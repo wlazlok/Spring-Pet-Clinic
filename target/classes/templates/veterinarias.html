@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Veterinarians</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Find owners <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/vets">Veterinarians</a>
+                </li>
+            </ul>
+        </div>
+        <h1 style="font-family: serif; margin-right:5%;"  class="text-success" >Spring Pet Clinic</h1>
+    </nav>
+<div style="margin-left:20%; margin-right:20%;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th cope="col">ID</th>
+                <th cope="col">First Name</th>
+                <th cope="col">Last Name</th>
+                <th cope="col">Speciality</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vet : ${vets}">
+                <th th:text="${vet.id}" scope="row"></th>
+                <td th:text="${vet.firstName}"></td>
+                <td th:text="${vet.lastName}"></td>
+                <td>
+                    <ul th:each="spec : ${vet.specialities}">
+                        <li th:text="${spec.name}"> </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
