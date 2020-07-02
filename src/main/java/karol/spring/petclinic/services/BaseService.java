@@ -1,8 +1,12 @@
 package karol.spring.petclinic.services;
 
+import java.util.*;
+
 /**
  * @author Karol Wlazło
  * pet-clinic
  */
-public interface BaseService {
+public interface BaseService<T, ID> {
+
+    List<T> findAll();
 }
