@@ -3,25 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Owner Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-    <table class="table table-striped" th:object="${owner}">
-        <tr>
-            <th>Name</th>
-            <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td th:text="*{address}"></td>
-        </tr>
-        <tr>
-            <th>City</th>
-            <td th:text="*{city}"></td>
-        </tr>
-        <tr>
-            <th>Telephone</th>
-            <td th:text="*{telephone}"></td>
-        </tr>
-    </table>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Find owners <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/vets">Veterinarians</a>
+                </li>
+            </ul>
+        </div>
+        <h1 style="font-family: serif; margin-right:5%;"  class="text-success" >Spring Pet Clinic</h1>
+    </nav>
+
+    <div style="margin-left:30%; margin-right:20%; margin-top:2%;">
+        <table class="table table-striped" th:object="${owner}" style="margin-top:2%;">
+            <tr>
+                <th>Name</th>
+                <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td th:text="*{address}"></td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td th:text="*{city}"></td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td th:text="*{telephone}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
