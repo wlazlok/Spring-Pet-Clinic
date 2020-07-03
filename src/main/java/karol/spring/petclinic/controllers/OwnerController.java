@@ -86,4 +86,25 @@ public class OwnerController {
             return "redirect:/";
         }
     }
+
+    @GetMapping("/{ownerId}/edit")
+    public String loadUpdateOwnerForm(@PathVariable Long ownerId, Model model){
+
+        model.addAttribute("owner", ownerService.findById(ownerId));
+        return "editOwner";
+    }
+
+    @PostMapping("/{ownerId}/edit")
+    public String processUpdateOwnerForm(@ModelAttribute Owner owner, BindingResult result, @PathVariable Long ownerId){
+
+        if(result.hasErrors()){
+            System.out.println("ERROR");
+            return "editOwner";
+        }else{
+            owner.setId(ownerId);
+            Owner savedOwner = ownerService.save(owner);
+
+            return "redirect:/owner/" + owner.getId();
+        }
+    }
 }

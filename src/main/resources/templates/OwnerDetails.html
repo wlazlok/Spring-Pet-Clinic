@@ -43,7 +43,12 @@
                 <th>Telephone</th>
                 <td th:text="*{telephone}"></td>
             </tr>
+            <tr>
+                <th>Pets</th>
+                <td th:each="pet : ${owner.pets}" th:text="${pet.name}"></td>
+            </tr>
         </table>
+        <a th:href="@{'/owner/' + ${owner.id}  + '/edit'}" class="btn btn-primary" style="margin-top:5%;">Edit</a>
     </div>
 </body>
 </html>

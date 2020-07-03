@@ -1,11 +1,7 @@
 package karol.spring.petclinic.boostrapData;
 
-import karol.spring.petclinic.models.Owner;
-import karol.spring.petclinic.models.Speciality;
-import karol.spring.petclinic.models.Vet;
-import karol.spring.petclinic.repositories.OwnerRepository;
-import karol.spring.petclinic.repositories.SpecialityRepository;
-import karol.spring.petclinic.repositories.VetRepository;
+import karol.spring.petclinic.models.*;
+import karol.spring.petclinic.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.*;
@@ -21,12 +17,15 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerRepository ownerRepository;
     private final SpecialityRepository specialityRepository;
     private final VetRepository vetRepository;
+    private final PetTypeRepository petTypeRepository;
+    private final PetRepository petRepository;
 
-
-    public DataLoader(OwnerRepository ownerRepository, SpecialityRepository specialityRepository, VetRepository vetRepository) {
+    public DataLoader(OwnerRepository ownerRepository, SpecialityRepository specialityRepository, VetRepository vetRepository, PetTypeRepository petTypeRepository, PetRepository petRepository) {
         this.ownerRepository = ownerRepository;
         this.specialityRepository = specialityRepository;
         this.vetRepository = vetRepository;
+        this.petTypeRepository = petTypeRepository;
+        this.petRepository = petRepository;
     }
 
     @Override
@@ -44,6 +43,7 @@ public class DataLoader implements CommandLineRunner {
         ownerKarol.setLastName("Wlazło");
         ownerKarol.setCity("Balice");
         owners.add(ownerKarol);
+        ownerKarol.getPets().add(new Pet());
 
         return owners;
     }
