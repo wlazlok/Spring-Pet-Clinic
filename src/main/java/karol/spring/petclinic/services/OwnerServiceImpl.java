@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Karol Wlazło
@@ -34,4 +35,16 @@ public class OwnerServiceImpl implements OwnerService {
     public Owner save(Owner obj) {
         return ownerRepository.save(obj);
     }
+
+    @Override
+    public List<Owner> findByLastNameLikeIgnoreCase(String lastName) {
+        return ownerRepository.findByLastNameLikeIgnoreCase(lastName);
+    }
+
+    @Override
+    public Owner findById(Long id) {
+        Optional<Owner> optionalOwner = ownerRepository.findById(id);
+        return optionalOwner.orElse(null);
+    }
+
 }

@@ -9,5 +9,7 @@ import java.util.List;
  * pet-clinic
  */
 public interface OwnerService extends BaseService<Owner, Long> {
+    List<Owner> findByLastNameLikeIgnoreCase(String lastName);
 
+    Owner findById(Long id);
 }
