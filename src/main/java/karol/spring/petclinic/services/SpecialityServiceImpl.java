@@ -28,4 +28,9 @@ public class SpecialityServiceImpl implements SpecialityService {
 
         return specialities;
     }
+
+    @Override
+    public Speciality save(Speciality obj) {
+        return null;
+    }
 }

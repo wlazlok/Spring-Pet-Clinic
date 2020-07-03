@@ -9,4 +9,6 @@ import java.util.*;
 public interface BaseService<T, ID> {
 
     List<T> findAll();
+
+    T save(T obj);
 }

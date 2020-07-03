@@ -28,4 +28,9 @@ public class VerServiceImpl implements VerService {
 
         return vets;
     }
+
+    @Override
+    public Vet save(Vet obj) {
+        return null;
+    }
 }

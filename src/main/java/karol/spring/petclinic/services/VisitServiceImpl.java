@@ -28,4 +28,9 @@ public class VisitServiceImpl implements VisitService {
 
         return visits;
     }
+
+    @Override
+    public Visit save(Visit obj) {
+        return null;
+    }
 }

@@ -29,4 +29,9 @@ public class PetTypeServiceImpl implements PetTypeService {
 
         return petTypes;
     }
+
+    @Override
+    public PetType save(PetType obj) {
+        return null;
+    }
 }

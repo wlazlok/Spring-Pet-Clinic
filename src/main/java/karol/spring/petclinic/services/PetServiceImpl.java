@@ -27,4 +27,9 @@ public class PetServiceImpl implements PetService {
         petRepository.findAll().forEach(pets::add);
         return pets;
     }
+
+    @Override
+    public Pet save(Pet obj) {
+        return null;
+    }
 }
