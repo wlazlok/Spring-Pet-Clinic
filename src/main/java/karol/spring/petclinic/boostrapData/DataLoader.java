@@ -30,7 +30,31 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        ownerRepository.saveAll(loadOwners());
+        Owner ownerKarol = new Owner();
+        ownerKarol.setFirstName("Karol");
+        ownerKarol.setLastName("Wlazło");
+        ownerKarol.setCity("Balice");
+        ownerKarol.getPets().add(new Pet());
+
+        ownerRepository.save(ownerKarol);
+        PetType dog = new PetType();
+        dog.setName("Pies");
+
+        petTypeRepository.save(dog);
+
+        Pet roki = new Pet();
+        roki.setName("Roki");
+        roki.setPetType(dog);
+        roki.setOwner(ownerKarol);
+
+        Pet borys = new Pet();
+        borys.setName("Borys");
+        borys.setPetType(dog);
+        borys.setOwner(ownerKarol);
+
+        petRepository.save(roki);
+        petRepository.save(borys);
+        //ownerRepository.saveAll(loadOwners());
         vetRepository.saveAll(loadVets());
     }
 
@@ -45,6 +69,17 @@ public class DataLoader implements CommandLineRunner {
         owners.add(ownerKarol);
         ownerKarol.getPets().add(new Pet());
 
+        PetType dog = new PetType();
+        dog.setName("Pies");
+
+        petTypeRepository.save(dog);
+
+        Pet roki = new Pet();
+        roki.setName("Roki");
+        roki.setPetType(dog);
+        roki.setOwner(ownerKarol);
+
+        petRepository.save(roki);
         return owners;
     }
 

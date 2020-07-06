@@ -42,7 +42,11 @@
             <td th:text="${owner.address}"/>
             <td th:text="${owner.city}"/>
             <td th:text="${owner.telephone}"/>
-            <td><span th:each="pet : ${owner.pets}" th:text="${pet.name} "/></td>
+            <td>
+                <ul th:each="pet : ${owner.pets}">
+                    <li> <a th:href="@{/owner/__${owner.id}__}"  th:text="${pet.name} + ' ' " /></a></li>
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>

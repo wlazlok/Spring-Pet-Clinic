@@ -45,7 +45,11 @@
             </tr>
             <tr>
                 <th>Pets</th>
-                <td th:each="pet : ${owner.pets}" th:text="${pet.id}"></td>
+                <td>
+                    <ul th:each="pet : ${owner.pets}">
+                        <li> <a th:text="${pet.name} + ' ' " /></a></li>
+                    </ul>
+                </td>
             </tr>
         </table>
         <a th:href="@{'/owner/' + ${owner.id}  + '/edit'}" class="btn btn-primary" style="margin-top:5%;">Edit</a>
