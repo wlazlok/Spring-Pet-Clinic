@@ -1,5 +1,9 @@
 package karol.spring.petclinic.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -8,7 +12,10 @@ import java.util.*;
  * pet-clinic
  */
 
+@Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "owners")
 public class Owner extends Person{
 
@@ -24,10 +31,6 @@ public class Owner extends Person{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     List<Pet> pets = new ArrayList<>();
 
-
-
-    public Owner() {
-    }
 
     public String getAddress() {
         return address;
@@ -59,5 +62,19 @@ public class Owner extends Person{
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public Pet getPet(String name, boolean ignoreNew){
+        name = name.toLowerCase();
+        for(Pet pet: pets){
+            if(!ignoreNew || !pet.isNew()){
+                String compName = pet.getName();
+                compName = compName.toLowerCase();
+                if(compName.equals(name)){
+                    return pet;
+                }
+            }
+        }
+        return null;
     }
 }

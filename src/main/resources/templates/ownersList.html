@@ -44,7 +44,7 @@
             <td th:text="${owner.telephone}"/>
             <td>
                 <ul th:each="pet : ${owner.pets}">
-                    <li> <a th:href="@{/owner/__${owner.id}__}"  th:text="${pet.name} + ' ' " /></a></li>
+                    <li> <a th:text="${pet.name} + ' ' " /></a></li>
                 </ul>
             </td>
         </tr>

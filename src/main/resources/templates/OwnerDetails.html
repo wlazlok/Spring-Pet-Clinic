@@ -26,6 +26,8 @@
     </nav>
 
     <div style="margin-left:30%; margin-right:20%; margin-top:2%;">
+
+        <h2 >Owner Information</h2>
         <table class="table table-striped" th:object="${owner}" style="margin-top:2%;">
             <tr>
                 <th>Name</th>
@@ -43,16 +45,31 @@
                 <th>Telephone</th>
                 <td th:text="*{telephone}"></td>
             </tr>
-            <tr>
-                <th>Pets</th>
-                <td>
-                    <ul th:each="pet : ${owner.pets}">
-                        <li> <a th:text="${pet.name} + ' ' " /></a></li>
-                    </ul>
-                </td>
-            </tr>
         </table>
         <a th:href="@{'/owner/' + ${owner.id}  + '/edit'}" class="btn btn-primary" style="margin-top:5%;">Edit</a>
+
+        <a th:href="@{'/owner/' + ${owner.id}  + '/pets/new'}" class="btn btn-primary" style="margin-top:5%;">Add new Pet</a>
+
+        <h2 style="margin-top:5%;">Pets and Visits</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <th>Name</th>
+                <th>Birth Date</th>
+                <th>Type</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr th:each="pet : ${owner.pets}">
+                    <td th:text="${pet.name}"></td>
+                    <td></td>
+                    <td th:text="${pet.petType.name}"></td>
+                    <td><button type="button" class="btn btn-success"><a>Edit Pet</a></button></td>
+                    <td>EDIT VISIT</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

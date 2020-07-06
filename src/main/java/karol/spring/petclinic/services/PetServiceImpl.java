@@ -30,6 +30,6 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet save(Pet obj) {
-        return null;
+        return petRepository.save(obj);
     }
 }

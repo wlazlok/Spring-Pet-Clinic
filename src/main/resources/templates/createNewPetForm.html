@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Pet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+
+    <div style="margin-left:30%; margin-right:20%;">
+        <h1>New Pet</h1>
+    <form th:object="${pet}" style="margin-top:5%;" method="post">
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><h5>Owner</h5></label>
+            <div class="col-sm-5">
+                <span th:text="${pet.owner.firstName + ' ' + pet.owner.lastName}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><h5>Name</h5></label>
+            <div class="col-sm-5">
+                <input type="text" th:field="*{name}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><h5>Type</h5></label>
+            <div class="col-sm-5" >
+                <select th:field="*{petType}">
+                    <option value=""> -- </option>
+                    <option th:each="type : ${types}"
+                            th:value="${type}"
+                            th:text="${type.name}"/>
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit" value="Submit"><h5>Add new Pet</h5></button>
+    </form>
+    </div>
+</body>
+</html>

@@ -7,4 +7,5 @@ import karol.spring.petclinic.models.PetType;
  * pet-clinic
  */
 public interface PetTypeService extends BaseService<PetType, Long>{
+    PetType findByName(String name);
 }

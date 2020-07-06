@@ -1,5 +1,10 @@
 package karol.spring.petclinic.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.*;
@@ -8,7 +13,10 @@ import java.util.*;
  * @author Karol Wlazło
  * pet-clinic
  */
+
+@Builder
 @Entity
+@AllArgsConstructor
 @Table(name = "pets")
 public class Pet extends BaseEntity{
 

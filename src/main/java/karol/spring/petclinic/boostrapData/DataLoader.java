@@ -1,7 +1,9 @@
 package karol.spring.petclinic.boostrapData;
 
 import karol.spring.petclinic.models.*;
-import karol.spring.petclinic.repositories.*;
+import karol.spring.petclinic.repositories.SpecialityRepository;
+import karol.spring.petclinic.repositories.VetRepository;
+import karol.spring.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.*;
@@ -14,19 +16,25 @@ import java.util.*;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final OwnerRepository ownerRepository;
-    private final SpecialityRepository specialityRepository;
-    private final VetRepository vetRepository;
-    private final PetTypeRepository petTypeRepository;
-    private final PetRepository petRepository;
+    private final OwnerService ownerService;
+    private final SpecialityService specialityService;
+    private final VerService verService;
+    private final PetTypeService petTypeService;
+    private final PetService petService;
 
-    public DataLoader(OwnerRepository ownerRepository, SpecialityRepository specialityRepository, VetRepository vetRepository, PetTypeRepository petTypeRepository, PetRepository petRepository) {
-        this.ownerRepository = ownerRepository;
-        this.specialityRepository = specialityRepository;
+    private final VetRepository vetRepository;
+    private final SpecialityRepository specialityRepository;
+
+    public DataLoader(OwnerService ownerService, SpecialityService specialityService, VerService verService, PetTypeService petTypeService, PetService petService, VetRepository vetRepository, SpecialityRepository specialityRepository) {
+        this.ownerService = ownerService;
+        this.specialityService = specialityService;
+        this.verService = verService;
+        this.petTypeService = petTypeService;
+        this.petService = petService;
         this.vetRepository = vetRepository;
-        this.petTypeRepository = petTypeRepository;
-        this.petRepository = petRepository;
+        this.specialityRepository = specialityRepository;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,11 +44,21 @@ public class DataLoader implements CommandLineRunner {
         ownerKarol.setCity("Balice");
         ownerKarol.getPets().add(new Pet());
 
-        ownerRepository.save(ownerKarol);
+        ownerService.save(ownerKarol);
         PetType dog = new PetType();
         dog.setName("Pies");
 
-        petTypeRepository.save(dog);
+        petTypeService.save(dog);
+
+        PetType kot = new PetType();
+        kot.setName("Kot");
+
+        petTypeService.save(kot);
+
+        PetType papuga = new PetType();
+        papuga.setName("Papuga");
+
+        petTypeService.save(papuga);
 
         Pet roki = new Pet();
         roki.setName("Roki");
@@ -52,13 +70,14 @@ public class DataLoader implements CommandLineRunner {
         borys.setPetType(dog);
         borys.setOwner(ownerKarol);
 
-        petRepository.save(roki);
-        petRepository.save(borys);
+        petService.save(roki);
+        petService.save(borys);
+
         //ownerRepository.saveAll(loadOwners());
         vetRepository.saveAll(loadVets());
     }
 
-    public List<Owner> loadOwners(){
+    /*public List<Owner> loadOwners(){
 
         List<Owner> owners = new ArrayList<>();
 
@@ -81,8 +100,7 @@ public class DataLoader implements CommandLineRunner {
 
         petRepository.save(roki);
         return owners;
-    }
-
+    }*/
 
     public List<Vet> loadVets(){
         // loading specialities
