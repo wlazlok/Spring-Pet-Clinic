@@ -37,3 +37,8 @@ Or just click link: **https://spring-pet-clinic-by-karol.herokuapp.com/**
 * **email:** kwlazo9@gmail.com
 
 ## Screenshots
+![Index page](./images/homePage.PNG)
+![Find Owners](./images/findOwners.PNG)
+![Add New Owner](./images/addNewOwner.PNG)
+![Add Visit](./images/addVisit.PNG)
+![Owner Detail](./images/ownerDetail.PNG)
