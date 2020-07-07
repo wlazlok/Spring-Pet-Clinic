@@ -7,4 +7,6 @@ import karol.spring.petclinic.models.Pet;
  * pet-clinic
  */
 public interface PetService extends BaseService<Pet, Long>{
+
+    void deleteById(Long id);
 }

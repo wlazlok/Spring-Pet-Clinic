@@ -82,6 +82,14 @@ public class PetController {
             return "redirect:/owner/" + owner.getId();
         }
     }
+
+    @GetMapping("/pet/{petId}/delete")
+    public String deletePetById(Owner owner, @PathVariable Long petId){
+
+        petService.deleteById(petId);
+
+        return "redirect:/owner/" + owner.getId();
+    }
 }
 
 
