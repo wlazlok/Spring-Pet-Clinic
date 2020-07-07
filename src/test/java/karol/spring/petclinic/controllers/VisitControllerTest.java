@@ -55,7 +55,6 @@ class VisitControllerTest {
         owner.setId(1L);
         when(ownerService.findById(anyLong())).thenReturn(owner);
 
-        verify(ownerService, times(1)).findById(anyLong());
         assertEquals(owner, ownerService.findById(anyLong()));
         assertNotNull(owner);
     }
@@ -65,13 +64,25 @@ class VisitControllerTest {
         Pet pet = new Pet();
         pet.setId(1L);
         when(petService.findById(anyLong())).thenReturn(pet);
-         
+
         assertEquals(pet, petService.findById(anyLong()));
         assertNotNull(pet);
     }
 
     @Test
-    void initCreateNewVisitForm() {
+    void initCreateNewVisitForm() throws Exception {
+        Pet pet = new Pet();
+        pet.setId(1L);
+        Owner owner = new Owner();
+        owner.setId(1L);
+        when(petService.findById(anyLong())).thenReturn(pet);
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+        mockMvc.perform(get("/owner/1/pet/1/visit/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("createNewVisitForm"))
+                .andExpect(model().attributeExists("pet"));
+
+        verify(ownerService, times(1)).findById(anyLong());
     }
 
     @Test
