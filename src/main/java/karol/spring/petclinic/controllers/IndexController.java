@@ -25,10 +25,6 @@ public class IndexController {
     @GetMapping("/")
     public String getIndexPage(){
 
-        List<Owner> result = ownerService.findAll();
-        for (Owner owner: result) {
-            System.out.println(owner.getFirstName());
-        }
 
         return "index.html";
     }
