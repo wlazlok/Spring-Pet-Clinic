@@ -2,6 +2,7 @@ package karol.spring.petclinic.controllers;
 
 import karol.spring.petclinic.models.Owner;
 import karol.spring.petclinic.models.Pet;
+import karol.spring.petclinic.models.Visit;
 import karol.spring.petclinic.services.OwnerService;
 import karol.spring.petclinic.services.PetService;
 import karol.spring.petclinic.services.VisitService;
@@ -87,13 +88,39 @@ class VisitControllerTest {
 
     @Test
     void getVisitList() {
+        Pet pet = new Pet();
+        pet.setId(1L);
+        pet.getVisits().add(new Visit());
+
+        when(petService.findById(anyLong())).thenReturn(pet);
+
+        assertEquals( 1,pet.getVisits().size());
+        verify(petService, times(0)).findById(anyLong());
     }
 
     @Test
     void loadPetVisit() {
+        //todo
     }
 
     @Test
-    void processAddVisit() {
+    void processAddVisit() throws Exception {
+        Owner owner = new Owner();
+        owner.setId(1L);
+        Pet pet = new Pet();
+        pet.setId(1L);
+        Visit visit = new Visit();
+        visit.setId(1L);
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(petService.findById(anyLong())).thenReturn(pet);
+        when(visitService.save(any())).thenReturn(visit);
+
+        mockMvc.perform(post("/owner/1/pet/1/visit/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owner/{ownerId}/pet/{petId}/visit/new"))
+                .andExpect(model().attributeExists("visit"));
+
+        verify(ownerService, times(1)).findById(anyLong());
+        verify(visitService, times(1)).save(any());
     }
 }
