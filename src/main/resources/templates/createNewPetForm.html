@@ -26,6 +26,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><h5>Birth Date</h5></label>
+            <div class="col-sm-5">
+                <input type="text" th:field="*{birthDate}" class="form-control" placeholder="YYYY-MM-DD" />
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-2 col-form-label"><h5>Type</h5></label>
             <div class="col-sm-5" >
                 <select th:field="*{petType}">

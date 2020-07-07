@@ -41,14 +41,15 @@
                 <th>Type</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </thead>
             <tbody>
                 <tr th:each="pet : ${owner.pets}">
                     <td th:text="${pet.name}"></td>
-                    <td></td>
+                    <td th:text="${pet.birthDate}"></td>
                     <td th:text="${pet.petType.name}"></td>
-                    <td><button type="button" class="btn btn-success"><a>Edit Pet</a></button></td>
-                    <td>EDIT VISIT</td>
+                    <td><a href="#" th:href="@{'/owner/' + ${owner.id}  + '/pet/' + ${pet.id} +  '/edit'}"><button type="button" class="btn btn-danger">Edit</button></a></td>
+                    <td>Add Visit</td>
                     <td><a href="#" th:href=" @{'/owner/' + ${owner.id} + '/pet/' + ${pet.id} +  '/delete' }"><button type="button" class="btn btn-danger">Delete</button></a></td>
                 </tr>
             </tbody>

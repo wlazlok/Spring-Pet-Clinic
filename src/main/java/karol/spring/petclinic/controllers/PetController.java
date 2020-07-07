@@ -16,10 +16,13 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
 import java.beans.Transient;
+import java.time.LocalDate;
 import java.util.*;
 
 import static org.springframework.util.StringUtils.hasLength;
+import static org.springframework.util.StringUtils.sortStringArray;
 
 /**
  * @author Karol Wlazło
@@ -49,9 +52,16 @@ public class PetController {
         return this.petTypeService.findAll();
     }
 
-    @InitBinder("owner")
-    public void initOwnerBinder(WebDataBinder webDataBinder){
-        webDataBinder.setDisallowedFields("id");
+    @InitBinder
+    public void dataBinder(WebDataBinder dataBinder) {
+        dataBinder.setDisallowedFields("id");
+
+        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException{
+                setValue(LocalDate.parse(text));
+            }
+        });
     }
 
     @GetMapping("/pets/new")
@@ -83,12 +93,41 @@ public class PetController {
         }
     }
 
+
     @GetMapping("/pet/{petId}/delete")
     public String deletePetById(Owner owner, @PathVariable Long petId){
 
         petService.deleteById(petId);
 
         return "redirect:/owner/" + owner.getId();
+    }
+
+    @GetMapping("/pet/{petId}/edit")
+    public String initUpdateForm(@PathVariable Long petId, Model model) {
+        model.addAttribute("pet", petService.findById(petId));
+        return "createNewPetForm";
+    }
+
+    @PostMapping("/pet/{petId}/edit")
+    @Transactional
+    public String processUpdatePet(@Validated Pet pet, BindingResult result, Owner owner, Model model, @PathVariable Long petId){
+
+        if(result.hasErrors()){
+            model.addAttribute("pet", pet);
+            return "createNewPetForm";
+        }
+        else {
+            Pet savedPet = petService.findById(petId);
+
+            savedPet.setOwner(owner);
+            owner.getPets().add(savedPet);
+            savedPet.setBirthDate(pet.getBirthDate());
+            savedPet.setPetType(petTypeService.findByName(pet.getPetType().getName()));
+
+            petService.save(savedPet);
+
+            return "redirect:/owner/" + owner.getId();
+        }
     }
 }
 

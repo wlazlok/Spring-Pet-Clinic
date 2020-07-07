@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Karol Wlazło
@@ -36,5 +37,11 @@ public class PetServiceImpl implements PetService {
     @Override
     public void deleteById(Long id) {
         petRepository.deleteById(id);
+    }
+
+    @Override
+    public Pet findById(Long id) {
+
+        return petRepository.findById(id).orElse(null);
     }
 }
