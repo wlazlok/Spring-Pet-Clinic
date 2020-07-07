@@ -30,6 +30,8 @@ To open and run this project, follow this commands:
 
 Then you can open app in browser on port **8080** *(http://localhost:8080/)*
 
+Or just clic link: **https://spring-pet-clinic-by-karol.herokuapp.com/**
+
 ## Author
 * **[Karol Wlazło](https://github.com/wlazlok)**
 * **email:** kwlazo9@gmail.com
