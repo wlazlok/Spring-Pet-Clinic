@@ -1,5 +1,7 @@
 package karol.spring.petclinic.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 public class Visit extends BaseEntity{
 
     @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate localDate;
 
     @Column(name = "description")

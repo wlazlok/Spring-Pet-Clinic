@@ -48,8 +48,8 @@
                     <td th:text="${pet.name}"></td>
                     <td th:text="${pet.birthDate}"></td>
                     <td th:text="${pet.petType.name}"></td>
-                    <td><a href="#" th:href="@{'/owner/' + ${owner.id}  + '/pet/' + ${pet.id} +  '/edit'}"><button type="button" class="btn btn-danger">Edit</button></a></td>
-                    <td>Add Visit</td>
+                    <td><a href="#" th:href="@{'/owner/' + ${owner.id}  + '/pet/' + ${pet.id} +  '/edit'}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+                    <td><a href="#" th:href="@{'/owner/' + ${owner.id}  + '/pet/' + ${pet.id} +  '/visit/new'}"><button type="button" class="btn btn-success">Add Visit</button></a></td>
                     <td><a href="#" th:href=" @{'/owner/' + ${owner.id} + '/pet/' + ${pet.id} +  '/delete' }"><button type="button" class="btn btn-danger">Delete</button></a></td>
                 </tr>
             </tbody>

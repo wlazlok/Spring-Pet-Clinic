@@ -31,6 +31,6 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public Visit save(Visit obj) {
-        return null;
+        return visitRepository.save(obj);
     }
 }
