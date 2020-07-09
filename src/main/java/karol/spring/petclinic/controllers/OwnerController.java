@@ -45,7 +45,6 @@ public class OwnerController {
         List<Owner> ownerList = ownerService.findByLastNameLikeIgnoreCase("%" + owner.getLastName() + "%");
 
         if(ownerList.isEmpty()){
-            System.out.println("ERROR_1");
             return "findOwners";
         } else if(ownerList.size() == 1){
             owner = ownerList.get(0);
