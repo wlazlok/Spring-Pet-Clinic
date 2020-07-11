@@ -81,7 +81,6 @@ public class OwnerController {
         }
         else{
             Owner savedOwner = ownerService.save(owner);
-            System.out.println("Udalo sie zapisac");
             return "redirect:/owner/" + owner.getId();
         }
     }
