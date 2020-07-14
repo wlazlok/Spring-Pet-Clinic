@@ -76,7 +76,7 @@ public class OwnerController {
     public String processAddNewOwnerForm(@ModelAttribute Owner owner, BindingResult result){
 
         if(result.hasErrors()){
-            System.out.println("Nie udalo sie zapisac");
+            System.out.println("ERROR_1");
             return "redirect:/";
         }
         else{
